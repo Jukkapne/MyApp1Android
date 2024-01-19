@@ -71,7 +71,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         OutlinedTextField(value = result, onValueChange = { result = it })
         Row {
                 Button(onClick = { result = subtractNumbers(numberOne, numberTwo) }) {
-                    Text(text = "Subtract")
+                    Text(text = "Subtract!")
 
                 }
 
