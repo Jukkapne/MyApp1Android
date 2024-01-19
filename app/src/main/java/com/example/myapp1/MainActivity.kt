@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -40,8 +43,17 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.Magenta
+
                 ) {
+
+                }
+                Surface(
+                    modifier = Modifier.padding(30.dp),
+                    color = Color.Gray
+
+                )
+                {
                     Greeting("Android")
                 }
             }
@@ -55,9 +67,14 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     var numberTwo by remember { mutableStateOf("") }
     var result by remember { mutableStateOf("") }
 
-    Column {
+    Column (modifier = Modifier.padding(30.dp)) {
+
         Text(
-            text = "Hello $name!"
+            color = Color.Green,
+            text = "Hello $name!",
+            modifier = modifier
+                .background(Color.Blue)
+                .padding(122.dp)
 
         )
         OutlinedTextField(
@@ -66,7 +83,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         )
         OutlinedTextField(
             value = numberTwo,
-            onValueChange = { numberTwo = it }
+            onValueChange = { numberTwo = it },
+            modifier = modifier.background(Color.Red)
+
         )
         OutlinedTextField(value = result, onValueChange = { result = it })
         Row {
@@ -75,10 +94,15 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
                 }
 
-            Button(onClick = { result = addNumbers(numberOne, numberTwo) }) {
-                Text(text = "Add")
-                Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                Button(onClick = { result = addNumbers(numberOne, numberTwo) }) {
+                    Text(text = "Add")
+                    Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null)
+                 }
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Multiply")
+
             }
+
 
 
         }
@@ -95,3 +119,4 @@ fun addNumbers(numberOne: String, numberTwo: String): String {
 fun subtractNumbers(numberOne: String, numberTwo: String): String {
     return (numberOne.toDouble() - numberTwo.toDouble()).toString()
 }
+
